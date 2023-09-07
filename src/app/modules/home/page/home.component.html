@@ -1,0 +1,19 @@
+<div id="content">
+    <div>
+        Account: {{ account }}
+    </div>
+    <div>
+        Balance: {{ accountBalance }} ETH
+    </div>
+    <div>
+        <h1>Transaction History</h1>
+    </div>
+    <mat-list>
+        <div class="masonry-item" *ngFor="let transaction of transactions$">
+            <mat-list-item>
+                <app-transaction-item [transaction]="transaction"></app-transaction-item>
+            </mat-list-item>
+        </div>
+    </mat-list>
+    <button mat-button (click)="getAllTransactions()">Load More..</button>
+</div>
