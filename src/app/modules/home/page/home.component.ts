@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { TransactionService } from 'src/app/data/service/transaction.service';
 import { Transaction } from 'src/app/data/schema/transaction';
 import { EthersService } from 'src/app/shared/service/ethers/ethers.service';
+import { StorageService } from 'src/app/shared/service/storage/storage.service';
+import { CryptoService } from 'src/app/shared/service/crypto/crypto.service';
 
 @Component({
     selector: 'app-home',
@@ -14,11 +16,20 @@ export class HomeComponent {
     transactionsListPage = 1;
     accountBalance: string | number = 0;
     account: string;
-    
-    constructor(private projectService: TransactionService, private ethersService: EthersService) {
-        this.account = '0x88588D081f41bB1e7C6357a00E98e402e6f27BC9';
+    selectedTabIndex: number = 0;
+
+    constructor(private projectService: TransactionService, private ethersService: EthersService, private storageService: StorageService, private cryptoService: CryptoService) {
+        this.storageService.getAllObjects('wallet', objects => {
+            const encryptedWallet = objects[0].wallet;
+            const wallet = this.cryptoService.decrypt(encryptedWallet);
+            this.account = wallet['account'].address;
+        });
         this.getAccountBalance();
         this.getAllTransactions();
+    }
+
+    onTabChange(milestoneIndex: number) {
+        this.selectedTabIndex = milestoneIndex;
     }
 
     getAllTransactions() {
@@ -42,7 +53,7 @@ export class HomeComponent {
             }
         });
     }
-    
+
     getAccountBalance() {
         const params = {
             module: 'account',

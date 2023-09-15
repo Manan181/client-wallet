@@ -1,15 +1,26 @@
 import { Injectable } from '@angular/core';
 import { ethers } from 'ethers';
 import { GenerateKeysState } from 'src/app/models/ether.state';
+import { environment } from 'src/environments/environment';
 
+/**
+ * Service for managing Ethereum-related operations
+ */
 @Injectable({
     providedIn: 'root'
 })
 export class EthersService {
-    private wallet: ethers.Wallet;
+    public wallet: ethers.Wallet;
+    private encryptionKey;
 
     constructor() {}
 
+    /**
+     * Generates Ethereum wallet keys using a provided seed phrase or a random mnemonic phrase.
+     * @param seedPhrase - Optional seed phrase for key generation. If not provided, a random mnemonic is generated.
+     * @param index - Optional index for key derivation. Default is 0.
+     * @returns An object containing the Ethereum account information and the seed phrase (if generated).
+     */
     generateKeys = (seedPhrase: string = '', index: number = 0): GenerateKeysState => {
         // If the seed phrase is not provided, generate a random mnemonic using a CSPRNG
         if (seedPhrase === '') {
@@ -24,11 +35,43 @@ export class EthersService {
         return { account, seedPhrase: seedPhrase.includes(' ') ? seedPhrase : '' };
     };
 
+    /**
+     * Converts an amount in Ethereum to its equivalent value in Wei.
+     * @param etherAmount - The amount in Ethereum to convert to Wei.
+     * @returns The amount in Wei as a string.
+     */
     convertToWei(etherAmount): string {
         return ethers.utils.parseEther(etherAmount).toString();
     }
 
+    /**
+     * Converts an amount in Wei to its equivalent value in Ethereum.
+     * @param weiValue - The amount in Wei to convert to Ethereum.
+     * @returns The amount in Ethereum as a string with 3 decimal places.
+     */
     convertToEther(weiValue): string {
         return Number(ethers.utils.formatEther(weiValue)).toFixed(3);
+    }
+
+    /**
+     * Generates a hash of a password combined with a secret for added security.
+     * @param password - The password to hash.
+     * @returns The hashed password as a string.
+     */
+    hashPassword(password: string): string {
+        const hash = ethers.utils.keccak256(ethers.utils.toUtf8Bytes(password + environment.passwordSecret));
+        return hash;
+    }
+
+    /**
+     * Validates a password against a stored hashed password.
+     * @param enteredPassword - The password entered by the user.
+     * @param storedHashedPassword - The previously stored hashed password.
+     * @returns True if the entered password matches the stored hashed password, otherwise false.
+     */
+    validatePassword(enteredPassword: string, storedHashedPassword: string): boolean {
+        const enteredPasswordHash = this.hashPassword(enteredPassword);
+        console.log('validatePassword', enteredPasswordHash, storedHashedPassword);
+        return enteredPasswordHash === storedHashedPassword;
     }
 }

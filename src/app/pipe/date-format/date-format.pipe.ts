@@ -24,7 +24,7 @@ export class DateFormatPipe implements PipeTransform {
             .getUTCSeconds()
             .toString()
             .padStart(2, '0')} UTC`;
-            
-            return formattedDate;
+
+        return formattedDate;
     }
 }

@@ -7,10 +7,11 @@ import { HomeRoutingModule } from './home-routing.module';
 import { TransactionItemComponent } from './page/transaction-item/transaction-item.component';
 import { TransactionDetailsComponent } from './page/transaction-details/transaction-details.component';
 import { DateFormatPipe } from 'src/app/pipe/date-format/date-format.pipe';
+import { MaterialModule } from 'src/app/shared/material.module';
 
 @NgModule({
     declarations: [HomeComponent, TransactionItemComponent, TransactionDetailsComponent, DateFormatPipe],
-    imports: [SharedModule, CommonModule, HomeRoutingModule, NgxMasonryModule],
+    imports: [SharedModule, CommonModule, HomeRoutingModule, NgxMasonryModule, MaterialModule],
     exports: [DateFormatPipe]
 })
 export class HomeModule {}

@@ -1,0 +1,14 @@
+<div>
+    <h1>Confirm Secret Recovery Phrase</h1>
+    <p>Confirm Secret Recovery Phrase</p>
+    <div class="password-input-container">
+        <div *ngFor="let row of rows; let rowIndex = index" class="password-row">
+            <div *ngFor="let col of cols; let colIndex = index" class="password-col">
+                <span>{{ rowIndex * cols.length + colIndex + 1 + '.' }}</span>
+                <input type="text" [(ngModel)]="phraseArray[rowIndex * cols.length + colIndex]" (input)="validateRecoveryPhrase($event)" />
+            </div>
+        </div>
+        <div *ngIf="!valid" class="error-message">Enter Valid Phrase</div>
+        <button (click)="confirmRecoveryPhrase()" [disabled]="!valid">Confirm</button>
+    </div>
+</div>

@@ -1,6 +1,7 @@
-<hr>
-<div>    
+<div>
     <mat-icon matListIcon> call_made </mat-icon>
-    <h4 matLine>Transaction Hash: <a [href]="explorerUrl" target="_blank">{{ transaction.hash }}</a></h4>
+    <h4 matLine>
+        Transaction Hash: <a [href]="explorerUrl" target="_blank">{{ transaction.hash }}</a>
+    </h4>
     <p matLine>Timestamp: {{ transaction.timeStamp | dateFormat }}</p>
 </div>

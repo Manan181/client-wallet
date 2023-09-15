@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 import { tap, delay, finalize, catchError } from 'rxjs/operators';
 import { of, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -17,10 +17,10 @@ export class LoginComponent {
 
     private loginSubscription = new Subscription();
 
-    constructor(private formBuilder: UntypedFormBuilder, private router: Router, private authService: AuthService) {
+    constructor(private router: Router, private authService: AuthService) {
         this.buildForm();
     }
-    
+
     get form() {
         return this.loginForm.controls;
     }

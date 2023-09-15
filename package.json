@@ -7,8 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "format:write": "prettier {src,e2e,cypress}/**/*.{ts,json,md,scss} --write",
-    "format:test": "prettier {src,e2e,cypress}/**/*.{ts,json,md,scss} --list-different"
+    "format:write": "prettier {src,e2e,cypress}/**/*.{ts,json,md,scss,html} --write",
+    "format:test": "prettier {src,e2e,cypress}/**/*.{ts,json,md,scss,html} --list-different"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +25,7 @@
     "@fortawesome/angular-fontawesome": "0.12.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "crypto-js": "^4.1.1",
     "ethers": "5.7.2",
     "masonry-layout": "^4.2.2",
     "ngx-masonry": "^14.0.1",

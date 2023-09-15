@@ -4,40 +4,80 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class StorageService {
-    private dbName: string = 'crowdFundingDB';
+    private dbName: string = 'wallet';
     private dbVersion: number = 1;
     private db: IDBDatabase;
 
     constructor() {
-        this.openDatabase();
+        // Initialize the IndexedDB database when the service is created.
+        this.initializeDatabase();
     }
 
-    private openDatabase() {
-        const request = indexedDB.open(this.dbName, this.dbVersion);
-
-        request.onsuccess = event => {
-            this.db = request.result;
-        };
-
-        request.onupgradeneeded = event => {
-            this.db = (event.target as IDBOpenDBRequest).result;
-            if (!this.db.objectStoreNames.contains('campaigns')) {
-                this.db.createObjectStore('campaigns', { keyPath: 'campaignAddress' });
-            }
-        };
-
-        request.onerror = event => {
-            console.error('Database error:', (event.target as IDBOpenDBRequest).error);
-        };
+    /**
+     * Initializes the IndexedDB database.
+     */
+    async initializeDatabase() {
+        try {
+            this.db = await this.openDatabase();
+        } catch (error) {
+            console.error('Error opening database:', error);
+        }
     }
 
+    /**
+     * Opens the IndexedDB database and handles versioning and object store creation.
+     * @returns A Promise resolving to the opened IDBDatabase.
+     */
+    private async openDatabase(): Promise<IDBDatabase> {
+        return new Promise<IDBDatabase>((resolve, reject) => {
+            const request = indexedDB.open(this.dbName, this.dbVersion);
+
+            request.onsuccess = event => {
+                const db = (event.target as IDBOpenDBRequest).result;
+                resolve(db);
+            };
+
+            request.onupgradeneeded = event => {
+                this.db = (event.target as IDBOpenDBRequest).result;
+                if (!this.db.objectStoreNames.contains('accounts')) {
+                    this.db.createObjectStore('accounts', { keyPath: 'id', autoIncrement: true });
+                }
+                if (!this.db.objectStoreNames.contains('auth')) {
+                    this.db.createObjectStore('auth', { keyPath: 'token' });
+                }
+                if (!this.db.objectStoreNames.contains('wallet')) {
+                    this.db.createObjectStore('wallet', { keyPath: 'wallet' });
+                    this.db.createObjectStore('wallet', { keyPath: 'walletCreated' });
+                }
+            };
+
+            request.onerror = event => {
+                reject((event.target as IDBOpenDBRequest).error);
+                console.error('Database error:', (event.target as IDBOpenDBRequest).error);
+            };
+        });
+    }
+
+    /**
+     * Adds an object to the specified object store in the database.
+     * @param storeName - The name of the object store.
+     * @param object - The object to add to the store.
+     */
     public addObject(storeName: string, object: any) {
         const transaction = this.db.transaction(storeName, 'readwrite');
         const store = transaction.objectStore(storeName);
         const request = store.add(object);
     }
 
-    public getAllObjects(storeName: string, callback: (objects: any[]) => void) {
+    /**
+     * Retrieves all objects from the specified object store in the database.
+     * @param storeName - The name of the object store.
+     * @param callback - A callback function to handle the retrieved objects.
+     */
+    public async getAllObjects(storeName: string, callback: (objects: any[]) => void) {
+        if (!this.db) {
+            await this.openDatabase();
+        }
         const transaction = this.db.transaction(storeName, 'readonly');
         const store = transaction.objectStore(storeName);
         const request = store.getAll();
@@ -48,6 +88,10 @@ export class StorageService {
         };
     }
 
+    /**
+     * Clears all data in the specified object store in the database.
+     * @param storeName - The name of the object store to clear.
+     */
     public clearStore(storeName: string) {
         const transaction = this.db.transaction(storeName, 'readwrite');
 

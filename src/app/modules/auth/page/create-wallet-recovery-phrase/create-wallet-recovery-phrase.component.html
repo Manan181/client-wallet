@@ -1,0 +1,22 @@
+<div>
+    <h1>Write down your Secret Recovery Phrase</h1>
+    <p>Write down this 12-word Secret Recovery Phrase and save it in a place that you trust and only you can access.</p>
+    <h4>Tips</h4>
+    <ul>
+        <li>Save in a password manager</li>
+        <li>Store in a safe deposit box</li>
+        <li>Write down and store in multiple secret places</li>
+    </ul>
+    <div class="password-input-container">
+        <div *ngFor="let row of rows; let rowIndex = index" class="password-row">
+            <div *ngFor="let col of cols; let colIndex = index" class="password-col">
+                <span>{{ rowIndex * cols.length + colIndex + 1 + '.' }}</span>
+                <input [type]="isVisible ? 'text' : 'password'" [(ngModel)]="phraseArray[rowIndex * cols.length + colIndex]" />
+            </div>
+        </div>
+        <button class="left" *ngIf="isVisible" (click)="isVisible = !isVisible">Hide seed phrase</button>
+        <button class="left" *ngIf="!isVisible" (click)="isVisible = !isVisible">Show seed phrase</button>
+        <button id="copyButton" (click)="copyToClipboard()">Copy to clipboard</button>
+        <button (click)="getRecoveryPhrase()">Next</button>
+    </div>
+</div>
