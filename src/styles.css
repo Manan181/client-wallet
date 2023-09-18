@@ -60,3 +60,41 @@ input {
   cursor: pointer;
   margin-left: 5px;
 }
+.btn-primary {
+  width: 100%;
+  background-color: #3f51b5;
+  padding: 16px 5px;
+  border-radius: 30px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid #3f51b5;
+}
+button{
+  cursor: pointer;
+}
+.password-input-container{
+  margin-top: 40px;
+}
+.password-input-container .password-row {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.password-input-container .password-row .password-col {
+  width: 33%;
+}
+.password-input-container .password-row .password-col span {
+  min-width: 28px;
+}
+.password-input-container .password-row .password-col input {
+  width: 70%;
+  border: 1px solid #c7c7c7;
+  border-radius: 10px;
+  min-height: 36px;
+  padding: 5px 10px;
+}
+app-nav .wrapper{
+  margin: 0 auto;
+  max-width: 800px;
+}

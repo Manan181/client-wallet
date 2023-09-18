@@ -9,6 +9,6 @@
             </div>
         </div>
         <div *ngIf="!valid" class="error-message">Enter Valid Phrase</div>
-        <button (click)="confirmRecoveryPhrase()" [disabled]="!valid">Confirm</button>
+        <button class="btn-primary" (click)="confirmRecoveryPhrase()" [disabled]="!valid">Confirm</button>
     </div>
 </div>

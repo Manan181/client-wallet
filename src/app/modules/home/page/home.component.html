@@ -1,11 +1,17 @@
 <div id="content">
-    <div>Account: {{ account }}</div>
-    <div>Balance: {{ accountBalance }} ETH</div>
-    <div>
-        <button class="round"><fa-icon icon="plus"></fa-icon></button>
-        <label>Buy</label>
-        <button class="round"><fa-icon [icon]="faPaperPlane"></fa-icon></button>
-        <label>Send</label>
+    <div class="account-details">
+        <div>Account: {{ account }}</div>
+        <div>Balance: {{ accountBalance }} ETH</div>
+        <div class="action-button">
+            <div class="icon">
+                <button class="round"><fa-icon icon="plus"></fa-icon></button>
+                <label>Buy</label>
+            </div>
+           <div class="icon">
+                <button class="round"><fa-icon [icon]="faPaperPlane"></fa-icon></button>
+                <label>Send</label>
+           </div>
+        </div>
     </div>
     <mat-tab-group [selectedIndex]="selectedTabIndex" (selectedIndexChange)="onTabChange($event)">
         <mat-tab label="Tokens">

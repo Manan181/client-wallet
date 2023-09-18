@@ -4,10 +4,32 @@
   margin-right: 1rem;
 }
 
-#content {
-  margin-top: 1rem;
-}
-
 .round {
   border-radius: 100%;
+}
+#content{
+  text-align: center;
+  margin: 0 auto;
+  max-width: 800px;
+  border: 1px solid #ddd;
+  padding: 20px 0;  
+}
+
+.account-details{
+  padding: 0 20px;
+  margin-bottom: 30px;
+}
+.account-details div {
+  margin-bottom: 10px;
+}
+.action-button {
+  display: flex;
+  justify-content: center;
+}
+.action-button .icon{
+  display: flex;
+  margin: 0 14px;
+}
+.action-button .icon label{
+  margin-left: 6px;
 }
