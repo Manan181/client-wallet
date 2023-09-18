@@ -18,7 +18,10 @@ export class CreateWalletPasswordComponent {
             this.router.navigate(['/auth/create-wallet-recovery-phrase']);
             const result: GenerateKeysState = this.ethersService.generateKeys();
             const encryptedData = this.cryptoService.encrypt(result);
+            const encryptedAccount = this.cryptoService.encrypt(result.account);
+            this.storageService.addObject('accounts', { account: encryptedAccount });
             this.storageService.addObject('wallet', { wallet: encryptedData });
+            this.storageService.addObject('tokens', { token: { symbol: 'ETH' } });
         }
     }
 }

@@ -26,7 +26,9 @@ import {
     faUserCircle,
     faAsterisk,
     faEye,
-    faEyeSlash
+    faEyeSlash,
+    faSquareArrowUpRight,
+    faBackward
 } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
@@ -37,6 +39,7 @@ import {
 export class SharedModule {
     constructor(faIconLibrary: FaIconLibrary) {
         faIconLibrary.addIcons(
+            faBackward,
             faPlus,
             faEdit,
             faTrash,
@@ -57,7 +60,8 @@ export class SharedModule {
             faUserCircle,
             faAsterisk,
             faEye,
-            faEyeSlash
+            faEyeSlash,
+            faSquareArrowUpRight
         );
     }
 }

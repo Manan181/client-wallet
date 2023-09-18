@@ -1,0 +1,36 @@
+<div>
+    <button><fa-icon faBackward>faBackward</fa-icon></button>
+</div>
+<div>
+    <h1>Reset wallet</h1>
+    <p>
+        Web-Wallet does not keep a copy of your password. If you’re having trouble unlocking your account, you will need to reset your wallet. You can do this by providing the
+        Secret Recovery Phrase you used when you set up your wallet.
+    </p>
+    <br />
+    <p>
+        This action will delete your current wallet and Secret Recovery Phrase from this device, along with the list of accounts you’ve curated. After resetting with a Secret
+        Recovery Phrase, you’ll see a list of accounts based on the Secret Recovery Phrase you use to reset. This new list will automatically include accounts that have a balance.
+        You’ll also be able to re-add any other accounts created previously. Custom accounts that you’ve imported will need to be re-added, and any custom tokens you’ve added to an
+        account will need to be re-added as well.
+    </p>
+    <br />
+    <p>Make sure you’re using the correct Secret Recovery Phrase before proceeding. You will not be able to undo this.</p>
+    <h4>Secret Recovery Phrase</h4>
+
+    <div class="password-input-container">
+        <div *ngFor="let row of rows; let rowIndex = index" class="password-row">
+            <div *ngFor="let col of cols; let colIndex = index" class="password-col">
+                <span>{{ rowIndex * cols.length + colIndex + 1 + '.' }}</span>
+                <input type="{{ getPasswordFieldType(rowIndex, colIndex) }}" [(ngModel)]="phraseArray[rowIndex * cols.length + colIndex]" />
+                <fa-icon
+                    [icon]="isPasswordVisible(rowIndex, colIndex) ? 'eye' : 'eye-slash'"
+                    (click)="togglePasswordVisibility(rowIndex, colIndex)"
+                    class="password-toggle-icon"
+                ></fa-icon>
+            </div>
+        </div>
+        <app-create-password [page]="'restore'" (passwordCreated)="passwordCreatedFn($event)"></app-create-password>
+        <button>Restore</button>
+    </div>
+</div>

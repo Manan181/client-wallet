@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NoAuthGuard } from 'src/app/core/guard/no-auth.guard';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import { ContentLayoutComponent } from './layout/content-layout/content-layout.component';
+import { AuthGuard } from './core/guard/auth.guard';
 
 const routes: Routes = [
     {
@@ -13,7 +14,7 @@ const routes: Routes = [
     {
         path: '',
         component: ContentLayoutComponent,
-        canActivate: [NoAuthGuard], // Should be replaced with actual auth guard
+        // canActivate: [AuthGuard], // Should be replaced with actual auth guard
         children: [
             {
                 path: 'home',
@@ -24,6 +25,7 @@ const routes: Routes = [
     {
         path: 'auth',
         component: AuthLayoutComponent,
+        canActivate: [NoAuthGuard],
         loadChildren: () => import('src/app/modules/auth/auth.module').then(m => m.AuthModule)
     },
     {

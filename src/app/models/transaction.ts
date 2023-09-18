@@ -50,3 +50,11 @@ export interface AccountBalanceResponse {
     result: string;
     status: string;
 }
+
+export interface TokenBalanceParams {
+    module: string;
+    action: string;
+    contractaddress: string;
+    address: string;
+    tag: string;
+}

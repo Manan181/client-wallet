@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators, ValidationErrors } from '@angular/forms';
 import { EthersService } from '../../service/ethers/ethers.service';
 import { StorageService } from '../../service/storage/storage.service';
@@ -12,8 +12,10 @@ export class CreatePasswordComponent {
     public createPasswordForm: UntypedFormGroup;
     public checkboxChecked = false;
     @Output() passwordCreated = new EventEmitter<Boolean>();
+    @Input() page: String;
 
     constructor(private formBuilder: UntypedFormBuilder, private ethersService: EthersService, private storageService: StorageService) {
+        console.log('page', this.page);
         function passwordMatchValidator(control: UntypedFormControl): ValidationErrors | null {
             const password = control.get('password');
             const confirmPassword = control.get('confirmPassword');

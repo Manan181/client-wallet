@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { StorageService } from 'src/app/shared/service/storage/storage.service';
 
@@ -13,7 +13,7 @@ export class PasswordCreatedGuard {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         this.storageService.getAllObjects('wallet', objects => {
-            if (objects[0].wallet.length > 0) {
+            if (objects[0]?.wallet.length > 0) {
                 this.passwordCreated = true;
             } else {
                 this.passwordCreated = false;
@@ -21,6 +21,7 @@ export class PasswordCreatedGuard {
         });
         console.log('this.passwordCreated', this.passwordCreated);
         if (this.passwordCreated === false) {
+            this.router.navigate['/auth/register'];
             return false;
         } else {
             return true;

@@ -1,0 +1,8 @@
+<mat-list>
+    <mat-list-item *ngFor="let token of tokens">
+        <b
+            ><p>{{ token.symbol }}</p></b
+        ><br />
+        <p>{{ token.amount + ' ' + token.symbol }}</p>
+    </mat-list-item>
+</mat-list>

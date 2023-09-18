@@ -11,6 +11,7 @@ import { CreateWalletPasswordComponent } from './page/create-wallet-password/cre
 import { CreateWalletRecoveryPhraseComponent } from './page/create-wallet-recovery-phrase/create-wallet-recovery-phrase.component';
 import { ConfirmWalletRecoveryPhraseComponent } from './page/confirm-wallet-recovery-phrase/confirm-wallet-recovery-phrase.component';
 import { WalletCreationSuccessComponent } from './page/wallet-creation-success/wallet-creation-success.component';
+import { ResetWalletComponent } from './page/reset-wallet/reset-wallet.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { WalletCreationSuccessComponent } from './page/wallet-creation-success/w
         CreateWalletPasswordComponent,
         CreateWalletRecoveryPhraseComponent,
         ConfirmWalletRecoveryPhraseComponent,
-        WalletCreationSuccessComponent
+        WalletCreationSuccessComponent,
+        ResetWalletComponent
     ],
     imports: [CommonModule, AuthRoutingModule, SharedModule]
 })

@@ -5,12 +5,15 @@
 </h3>
 <div>
     <p>Type your Secret Recovery Phrase</p>
-    <!-- <app-recovery-phrase [page]="'import'" (confirmSecretRecoveryPhrase)="confirmSecretRecoveryPhrase($event)"></app-recovery-phrase> -->
     <div class="password-input-container">
         <div *ngFor="let row of rows; let rowIndex = index" class="password-row">
             <div *ngFor="let col of cols; let colIndex = index" class="password-col">
                 <span>{{ rowIndex * cols.length + colIndex + 1 + '.' }}</span>
-                <input type="{{ getPasswordFieldType(rowIndex, colIndex) }}" [(ngModel)]="phraseArray[rowIndex * cols.length + colIndex]" />
+                <input
+                    type="{{ getPasswordFieldType(rowIndex, colIndex) }}"
+                    [(ngModel)]="phraseArray[rowIndex * cols.length + colIndex]"
+                    (input)="validateMnemonicPhrase($event)"
+                />
                 <fa-icon
                     [icon]="isPasswordVisible(rowIndex, colIndex) ? 'eye' : 'eye-slash'"
                     (click)="togglePasswordVisibility(rowIndex, colIndex)"

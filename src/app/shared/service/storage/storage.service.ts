@@ -47,7 +47,15 @@ export class StorageService {
                 }
                 if (!this.db.objectStoreNames.contains('wallet')) {
                     this.db.createObjectStore('wallet', { keyPath: 'wallet' });
-                    this.db.createObjectStore('wallet', { keyPath: 'walletCreated' });
+                }
+                if (!this.db.objectStoreNames.contains('walletCreated')) {
+                    this.db.createObjectStore('walletCreated', { keyPath: 'id' });
+                }
+                if (!this.db.objectStoreNames.contains('tokens')) {
+                    this.db.createObjectStore('tokens', { keyPath: 'token' });
+                }
+                if (!this.db.objectStoreNames.contains('networks')) {
+                    this.db.createObjectStore('networks', { keyPath: 'network' });
                 }
             };
 

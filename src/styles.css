@@ -24,16 +24,39 @@ body {
 
 h1,
 h3,
-p {
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-h1,
-h3,
 p,
 form {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.password-toggle-icon.fa-eye-slash {
+  color: red;
+}
+
+.password-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.password-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.password-col {
+  display: flex;
+  align-items: center;
+}
+
+input {
+  width: 100px;
+}
+
+.password-toggle-icon {
+  cursor: pointer;
+  margin-left: 5px;
 }
