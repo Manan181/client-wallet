@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
     styleUrls: ['./reset-wallet.component.css']
 })
 export class ResetWalletComponent {
-    rows: number[] = [0, 1, 2, 3];
-    cols: number[] = [0, 1, 2];
-    visiblePasswordIndex: number = -1;
-    phraseArray: string[] = new Array(12).fill('');
+    rows = [0, 1, 2, 3];
+    cols = [0, 1, 2];
+    visiblePasswordIndex = -1;
+    phraseArray = new Array(12).fill('');
 
     constructor(private router: Router) {}
 

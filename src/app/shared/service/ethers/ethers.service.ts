@@ -11,7 +11,6 @@ import { environment } from 'src/environments/environment';
 })
 export class EthersService {
     public wallet: ethers.Wallet;
-    private encryptionKey;
 
     constructor() {}
 
@@ -21,18 +20,19 @@ export class EthersService {
      * @param index - Optional index for key derivation. Default is 0.
      * @returns An object containing the Ethereum account information and the seed phrase (if generated).
      */
-    generateKeys = (seedPhrase: string = '', index: number = 0): GenerateKeysState => {
-        // If the seed phrase is not provided, generate a random mnemonic using a CSPRNG
-        if (seedPhrase === '') {
-            seedPhrase = ethers.Wallet.createRandom().mnemonic.phrase;
+    generateKeys = (seedPhrase: string = '', index: number = 0): GenerateKeysState | any => {
+        try {
+            // If the seed phrase is not provided, generate a random mnemonic using a CSPRNG
+            if (seedPhrase === '') {
+                seedPhrase = ethers.Wallet.createRandom().mnemonic.phrase;
+            }
+            this.wallet = seedPhrase.includes(' ') ? ethers.Wallet.fromMnemonic(seedPhrase, `m/44'/60'/0'/0/${index}`) : new ethers.Wallet(seedPhrase);
+            const { address } = this.wallet;
+            const account = { address, privateKey: this.wallet.privateKey, balance: '0' };
+            return { account, seedPhrase: seedPhrase.includes(' ') ? seedPhrase : '' };
+        } catch (error) {
+            return error.message;
         }
-
-        this.wallet = seedPhrase.includes(' ') ? ethers.Wallet.fromMnemonic(seedPhrase, `m/44'/60'/0'/0/${index}`) : new ethers.Wallet(seedPhrase);
-
-        const { address } = this.wallet;
-        const account = { address, privateKey: this.wallet.privateKey, balance: '0' };
-
-        return { account, seedPhrase: seedPhrase.includes(' ') ? seedPhrase : '' };
     };
 
     /**
@@ -40,7 +40,7 @@ export class EthersService {
      * @param etherAmount - The amount in Ethereum to convert to Wei.
      * @returns The amount in Wei as a string.
      */
-    convertToWei(etherAmount): string {
+    convertToWei(etherAmount: string): string {
         return ethers.utils.parseEther(etherAmount).toString();
     }
 
@@ -49,8 +49,8 @@ export class EthersService {
      * @param weiValue - The amount in Wei to convert to Ethereum.
      * @returns The amount in Ethereum as a string with 3 decimal places.
      */
-    convertToEther(weiValue): string {
-        return Number(ethers.utils.formatEther(weiValue)).toFixed(3);
+    convertToEther(weiValue: string): number {
+        return Number(Number(ethers.utils.formatEther(weiValue)).toFixed(3));
     }
 
     /**

@@ -1,0 +1,10 @@
+.link {
+    border: none;
+    background: none;
+    color: blue;
+    font-weight: 500;
+}
+
+.link:hover {
+    text-decoration: underline;
+}

@@ -1,8 +1,10 @@
 <mat-list>
     <mat-list-item *ngFor="let token of tokens">
-        <b
-            ><p>{{ token.symbol }}</p></b
-        ><br />
-        <p>{{ token.amount + ' ' + token.symbol }}</p>
+        <p>{{ token.symbol || 'Ethereum' }}</p>
+        <p>{{ token.amount || 0 + ' ' + token.symbol || 'ETH' }}</p>
     </mat-list-item>
 </mat-list>
+<div>
+    <button class="link" (click)="importTokenModal()"><fa-icon [icon]="faPlus"></fa-icon> Import Tokens</button>
+    <button class="link" (click)="initTokens()"><fa-icon [icon]="faRefresh"></fa-icon> Refresh List</button>
+</div>

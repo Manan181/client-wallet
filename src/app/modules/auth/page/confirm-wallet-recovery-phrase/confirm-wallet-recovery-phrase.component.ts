@@ -7,18 +7,18 @@ import { ActivatedRoute, Router } from '@angular/router';
     styleUrls: ['./confirm-wallet-recovery-phrase.component.css']
 })
 export class ConfirmWalletRecoveryPhraseComponent {
-    rows: number[] = [0, 1, 2, 3];
-    cols: number[] = [0, 1, 2];
-    phraseArray: string[] = new Array(12).fill('');
-    confirmPhraseArray;
+    rows = [0, 1, 2, 3];
+    cols = [0, 1, 2];
+    phraseArray = new Array(12).fill('');
+    confirmPhraseString = '';
     valid: boolean;
 
     constructor(private router: Router, private route: ActivatedRoute) {
         console.log(this.route.snapshot.paramMap.get('phraseArray'));
-        this.confirmPhraseArray = this.route.snapshot.paramMap.get('phraseArray');
+        this.confirmPhraseString = this.route.snapshot.paramMap.get('phraseArray');
     }
 
-    validateRecoveryPhrase(event) {
+    validateMnemonicPhrase(event) {
         const inputs = document.querySelectorAll('input');
         let inputArr = [];
         this.valid = true;
@@ -42,7 +42,7 @@ export class ConfirmWalletRecoveryPhraseComponent {
         for (let index = 0; index < inputs.length; index++) {
             phrase.push(inputs[index].value);
         }
-        if (this.confirmPhraseArray === phrase.toString()) {
+        if (this.confirmPhraseString === phrase.toString()) {
             this.router.navigate(['/auth/wallet-creation-success']);
         } else {
             this.valid = false;

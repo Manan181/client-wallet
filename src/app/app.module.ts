@@ -13,10 +13,11 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { NavComponent } from './layout/nav/nav.component';
 import { StorageService } from './shared/service/storage/storage.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [AppComponent, AuthLayoutComponent, ContentLayoutComponent, FooterComponent, NavComponent],
-    imports: [BrowserModule, AppRoutingModule, AuthModule, SharedModule, CoreModule, BrowserAnimationsModule],
+    imports: [BrowserModule, AppRoutingModule, AuthModule, SharedModule, CoreModule, BrowserAnimationsModule, MatDialogModule],
     providers: [EthersService, StorageService],
     bootstrap: [AppComponent]
 })

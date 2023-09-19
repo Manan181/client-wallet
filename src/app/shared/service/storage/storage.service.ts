@@ -52,10 +52,13 @@ export class StorageService {
                     this.db.createObjectStore('walletCreated', { keyPath: 'id' });
                 }
                 if (!this.db.objectStoreNames.contains('tokens')) {
-                    this.db.createObjectStore('tokens', { keyPath: 'token' });
+                    this.db.createObjectStore('tokens', { keyPath: 'symbol' });
                 }
                 if (!this.db.objectStoreNames.contains('networks')) {
                     this.db.createObjectStore('networks', { keyPath: 'network' });
+                }
+                if (!this.db.objectStoreNames.contains('nfts')) {
+                    this.db.createObjectStore('nfts', { keyPath: 'nft' });
                 }
             };
 

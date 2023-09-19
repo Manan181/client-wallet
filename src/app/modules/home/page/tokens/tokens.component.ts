@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { StorageService } from 'src/app/shared/service/storage/storage.service';
+import { faPlus, faRefresh } from '@fortawesome/free-solid-svg-icons';
+import { AddTokenModalComponent } from '../add-token-modal/add-token-modal.component';
+import { TransactionService } from 'src/app/data/service/transaction.service';
+import { TokenBalanceParams } from '../../../../models/transaction';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
     selector: 'app-tokens',
@@ -7,15 +13,52 @@ import { StorageService } from 'src/app/shared/service/storage/storage.service';
     styleUrls: ['./tokens.component.css']
 })
 export class TokensComponent implements OnInit {
-    tokens: any[];
+    @Input() accountBal: number;
+    @Input() accountAddress: string;
+    tokens: any[] = [];
+    faPlus = faPlus;
+    faRefresh = faRefresh;
 
-    constructor(private storageService: StorageService) {}
+    constructor(private storageService: StorageService, public dialog: MatDialog, private transactionService: TransactionService) {}
 
     async ngOnInit() {
-        await this.storageService.getAllObjects('tokens', objects => {
-            if (objects.length > 0) {
-                this.tokens = objects;
+        await this.initTokens();
+    }
+
+    async initTokens(): Promise<void> {
+        await this.storageService.getAllObjects('tokens', async objects => {
+            const newTokens = objects;
+            const uniqueTokens = newTokens.filter(newToken => !this.tokens.some(existingToken => existingToken.symbol === newToken.symbol));
+            this.tokens = this.tokens.concat(uniqueTokens);
+            for (const token of uniqueTokens) {
+                let tokenBalance: number;
+                let params: TokenBalanceParams = {
+                    module: 'account',
+                    action: 'tokenbalance',
+                    contractaddress: token.contractAddress,
+                    address: this.accountAddress,
+                    tag: 'latest'
+                };
+                if (params.contractaddress.length > 0 && params.address.length > 0) {
+                    let response = await firstValueFrom(this.transactionService.getTokenBalance(params));
+                    tokenBalance = Number(response.result);
+                } else {
+                    tokenBalance = Number(this.accountBal);
+                }
+                token.balance = tokenBalance;
             }
+        });
+    }
+
+    async importTokenModal() {
+        const dialogRef = this.dialog.open(AddTokenModalComponent, {
+            width: '250px',
+            hasBackdrop: true,
+            disableClose: false,
+            data: {}
+        });
+        dialogRef.afterClosed().subscribe(() => {
+            this.initTokens();
         });
     }
 }

@@ -7,15 +7,15 @@
                 <button class="round"><fa-icon icon="plus"></fa-icon></button>
                 <label>Buy</label>
             </div>
-           <div class="icon">
+            <div class="icon">
                 <button class="round"><fa-icon [icon]="faPaperPlane"></fa-icon></button>
                 <label>Send</label>
-           </div>
+            </div>
         </div>
     </div>
     <mat-tab-group [selectedIndex]="selectedTabIndex" (selectedIndexChange)="onTabChange($event)">
         <mat-tab label="Tokens">
-            <app-tokens></app-tokens>
+            <app-tokens [accountBal]="accountBalance" [accountAddress]="account"></app-tokens>
         </mat-tab>
         <mat-tab label="NFTs"></mat-tab>
         <mat-tab label="Activity">

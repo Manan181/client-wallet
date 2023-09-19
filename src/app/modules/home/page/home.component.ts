@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { TransactionService } from 'src/app/data/service/transaction.service';
 import { Transaction } from 'src/app/models/transaction';
@@ -12,10 +12,10 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
     transactions$: Transaction[] = [];
     transactionsListPage = 1;
-    accountBalance: string | number = 0;
+    accountBalance: number = 0;
     account: string;
     selectedTabIndex: number = 0;
     faPaperPlane = faPaperPlane;
@@ -25,13 +25,21 @@ export class HomeComponent {
         private ethersService: EthersService,
         private storageService: StorageService,
         private cryptoService: CryptoService
-    ) {
-        this.storageService.getAllObjects('wallet', objects => {
-            const encryptedWallet = objects[0].wallet;
-            const wallet = this.cryptoService.decrypt(encryptedWallet);
-            this.account = wallet['account'].address;
+    ) {}
+
+    async ngOnInit() {
+        await new Promise<void>(resolve => {
+            this.storageService.getAllObjects('wallet', objects => {
+                const encryptedWallet = objects[0].wallet;
+                const wallet = this.cryptoService.decrypt(encryptedWallet);
+                this.account = wallet['account'].address;
+                resolve();
+            });
         });
         this.getAccountBalance();
+        setInterval(() => {
+            this.getAccountBalance();
+        }, 60000);
         this.getAllTransactions();
     }
 
@@ -62,16 +70,20 @@ export class HomeComponent {
     }
 
     getAccountBalance() {
-        const params = {
-            module: 'account',
-            action: 'balance',
-            address: this.account,
-            tag: 'latest'
-        };
-        this.transactionService.getAccountBalance(params).subscribe(response => {
-            if (response.status === '1' && response.message === 'OK') {
-                this.accountBalance = this.ethersService.convertToEther(response.result);
-            }
-        });
+        try {
+            const params = {
+                module: 'account',
+                action: 'balance',
+                address: this.account,
+                tag: 'latest'
+            };
+            this.transactionService.getAccountBalance(params).subscribe(response => {
+                if (response.status === '1' && response.message === 'OK') {
+                    this.accountBalance = this.ethersService.convertToEther(response.result);
+                }
+            });
+        } catch (error) {
+            console.error(error);
+        }
     }
 }

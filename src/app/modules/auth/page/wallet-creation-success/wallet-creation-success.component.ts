@@ -12,6 +12,6 @@ export class WalletCreationSuccessComponent {
 
     goToHome() {
         this.router.navigate(['/home']);
-        this.storageService.addObject('walletCreated', { walletCreated: true });
+        this.storageService.addObject('walletCreated', { isWalletCreated: true, id: 1 });
     }
 }

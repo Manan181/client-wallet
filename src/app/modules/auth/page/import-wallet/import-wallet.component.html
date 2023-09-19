@@ -12,7 +12,7 @@
                 <input
                     type="{{ getPasswordFieldType(rowIndex, colIndex) }}"
                     [(ngModel)]="phraseArray[rowIndex * cols.length + colIndex]"
-                    (input)="validateMnemonicPhrase($event)"
+                    (input)="handleMnemonicPhraseInput($event)"
                 />
                 <fa-icon
                     [icon]="isPasswordVisible(rowIndex, colIndex) ? 'eye' : 'eye-slash'"
@@ -21,6 +21,7 @@
                 ></fa-icon>
             </div>
         </div>
+        <div *ngIf="!valid" class="error-message"><p>Invalid Mnemonic Phrase</p></div>
         <button class="btn-primary" (click)="confirmSecretRecoveryPhrase()">Confirm Secret Recovery Phrase</button>
     </div>
 </div>

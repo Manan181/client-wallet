@@ -10,14 +10,14 @@ import { CryptoService } from 'src/app/shared/service/crypto/crypto.service';
     styleUrls: ['./create-wallet-recovery-phrase.component.css']
 })
 export class CreateWalletRecoveryPhraseComponent {
-    rows: number[] = [0, 1, 2, 3];
-    cols: number[] = [0, 1, 2];
+    rows = [0, 1, 2, 3];
+    cols = [0, 1, 2];
     passwordCreated = false;
     recoveryPhraseCreated = false;
-    recoveryPhrase: '';
-    seedPhrase: string;
-    phraseArray: string[] = new Array(12).fill('');
-    isVisible: boolean = false;
+    recoveryPhrase = '';
+    seedPhrase = '';
+    phraseArray = new Array(12).fill('');
+    isVisible = false;
 
     constructor(private router: Router, private ethersService: EthersService, private storageService: StorageService, private cryptoService: CryptoService) {
         this.storageService.getAllObjects('wallet', objects => {

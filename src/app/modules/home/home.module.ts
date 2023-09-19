@@ -9,9 +9,10 @@ import { TransactionDetailsComponent } from './page/transaction-details/transact
 import { DateFormatPipe } from 'src/app/pipe/date-format/date-format.pipe';
 import { MaterialModule } from 'src/app/shared/material.module';
 import { TokensComponent } from './page/tokens/tokens.component';
+import { AddTokenModalComponent } from './page/add-token-modal/add-token-modal.component';
 
 @NgModule({
-    declarations: [HomeComponent, TransactionItemComponent, TransactionDetailsComponent, DateFormatPipe, TokensComponent],
+    declarations: [HomeComponent, TransactionItemComponent, TransactionDetailsComponent, DateFormatPipe, TokensComponent, AddTokenModalComponent],
     imports: [SharedModule, CommonModule, HomeRoutingModule, NgxMasonryModule, MaterialModule],
     exports: [DateFormatPipe]
 })

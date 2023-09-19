@@ -19,17 +19,15 @@ export class CreatePasswordComponent {
         function passwordMatchValidator(control: UntypedFormControl): ValidationErrors | null {
             const password = control.get('password');
             const confirmPassword = control.get('confirmPassword');
-
             if (password.value !== confirmPassword.value) {
                 return { passwordMismatch: true };
             }
-
             return null;
         }
         this.createPasswordForm = this.formBuilder.group(
             {
-                password: ['12345678', [Validators.required, Validators.minLength(8)]],
-                confirmPassword: ['12345678', Validators.required],
+                password: ['', [Validators.required, Validators.minLength(8)]],
+                confirmPassword: ['', Validators.required],
                 acceptTerms: [true, Validators.requiredTrue]
             },
             { validator: passwordMatchValidator }
