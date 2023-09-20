@@ -13,6 +13,9 @@
   max-width: 800px;
   border: 1px solid #ddd;
   padding: 20px 0;  
+  min-height: calc(100vh - 170px);
+  max-height: calc(100vh - 170px);
+  overflow: auto;
 }
 
 .account-details{
@@ -20,7 +23,7 @@
   margin-bottom: 30px;
 }
 .account-details div {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 .action-button {
   display: flex;

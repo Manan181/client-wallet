@@ -98,3 +98,19 @@ app-nav .wrapper{
   margin: 0 auto;
   max-width: 800px;
 }
+.mat-mdc-tab-body-wrapper{
+  margin-top: 30px;
+  padding: 0 10px;
+}
+.mat-mdc-tab-list{
+  border-bottom: 1px solid #ddd;
+}
+.mat-mdc-tab:hover .mdc-tab__ripple::before{
+  opacity: 0 !important;
+}
+.mdc-tab-indicator .mdc-tab-indicator__content--underline{
+  border-top-width: 3px !important;
+}
+.mat-mdc-tab .mdc-tab__text-label{
+  font-size: 16px;
+}
