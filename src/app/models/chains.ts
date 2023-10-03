@@ -1,22 +1,25 @@
 export type Chain = {
     chainId: string;
-    name: string;
+    networkName: string;
     blockExplorerUrl: string;
     rpcUrl: string;
+    currencySymbol: string;
 };
 
 export const sepolia: Chain = {
     chainId: '11155111',
-    name: 'Sepolia',
+    networkName: 'Sepolia',
     blockExplorerUrl: 'https://sepolia.etherscan.io/',
-    rpcUrl: 'https://sepolia.infura.io/v3/3f0c7a19504c4d1fbe3c3e439d277f4a'
+    rpcUrl: 'https://sepolia.infura.io/v3/3f0c7a19504c4d1fbe3c3e439d277f4a',
+    currencySymbol: 'ETH'
 };
 
 export const mainnet: Chain = {
     chainId: '1',
-    name: 'Ethereum',
+    networkName: 'Ethereum',
     blockExplorerUrl: 'https://etherscan.io/',
-    rpcUrl: 'https://mainnet.infura.io/v3/3f0c7a19504c4d1fbe3c3e439d277f4a'
+    rpcUrl: 'https://mainnet.infura.io/v3/3f0c7a19504c4d1fbe3c3e439d277f4a',
+    currencySymbol: 'ETH'
 };
 
 export const CHAINS_CONFIG = {

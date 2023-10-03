@@ -1,13 +1,13 @@
-.token-details{
+.nft-details{
     display: flex;
 }
-.token-details img{
+.nft-details img{
     border-radius: 50%;
     margin-right: 14px;
     max-width: 34px;
     max-height: 34px;
 }
-.token-details p{
+.nft-details p{
     margin: 0;
     padding: 0;
     font-size: 16px;
@@ -15,7 +15,7 @@
     text-align: left;
     font-weight: 500;
 }
-.token-details p:last-child{
+.nft-details p:last-child{
     font-weight: 400;
 }
 mat-list-item{

@@ -28,7 +28,7 @@ export class EthersService {
             }
             this.wallet = seedPhrase.includes(' ') ? ethers.Wallet.fromMnemonic(seedPhrase, `m/44'/60'/0'/0/${index}`) : new ethers.Wallet(seedPhrase);
             const { address } = this.wallet;
-            const account = { address, privateKey: this.wallet.privateKey, balance: '0' };
+            const account = { accountName: 'Account 1', address, privateKey: this.wallet.privateKey, balance: '0' };
             return { account, seedPhrase: seedPhrase.includes(' ') ? seedPhrase : '' };
         } catch (error) {
             return error.message;

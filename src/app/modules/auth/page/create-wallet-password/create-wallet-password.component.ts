@@ -35,7 +35,13 @@ export class CreateWalletPasswordComponent implements OnInit {
             const encryptedAccount = this.cryptoService.encrypt(result.account);
             this.storageService.addObject('accounts', { account: encryptedAccount });
             this.storageService.addObject('wallet', { wallet: encryptedData });
-            this.storageService.addObject('tokens', { symbol: 'ETH', contractAddress: '', decimalPlaces: 18, balance: 0 });
+            this.storageService.addObject('tokens', {
+                symbol: 'ETH',
+                accountAddress: result.account.address,
+                contractAddress: '',
+                decimalPlaces: 18,
+                balance: 0
+            });
             this.router.navigate(['/auth/create-wallet-recovery-phrase']);
         }
         if (event && this.fromModule === 'import') {

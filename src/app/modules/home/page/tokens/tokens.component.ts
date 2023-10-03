@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { StorageService } from 'src/app/shared/service/storage/storage.service';
-import { faPlus, faRefresh } from '@fortawesome/free-solid-svg-icons';
 import { AddTokenModalComponent } from '../add-token-modal/add-token-modal.component';
 import { TransactionService } from 'src/app/data/service/transaction.service';
 import { TokenBalanceParams } from '../../../../models/transaction';
@@ -16,8 +15,6 @@ export class TokensComponent implements OnInit {
     @Input() accountBal: number;
     @Input() accountAddress: string;
     tokens: any[] = [];
-    faPlus = faPlus;
-    faRefresh = faRefresh;
 
     constructor(private storageService: StorageService, public dialog: MatDialog, private transactionService: TransactionService) {}
 

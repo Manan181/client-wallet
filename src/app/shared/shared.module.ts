@@ -28,7 +28,12 @@ import {
     faEye,
     faEyeSlash,
     faSquareArrowUpRight,
-    faBackward
+    faBackward,
+    faChevronDown,
+    faEllipsisV,
+    faRefresh,
+    faPaperPlane,
+    faDownload
 } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
@@ -61,7 +66,12 @@ export class SharedModule {
             faAsterisk,
             faEye,
             faEyeSlash,
-            faSquareArrowUpRight
+            faSquareArrowUpRight,
+            faChevronDown,
+            faEllipsisV,
+            faRefresh,
+            faPaperPlane,
+            faDownload
         );
     }
 }

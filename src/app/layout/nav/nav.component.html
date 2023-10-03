@@ -3,10 +3,27 @@
         <mat-toolbar color="primary">
             <div class="container">
                 <span class="branding spacer center d-none d-sm-inline d-md-none"> Web Wallet </span>
+            </div>
+        </mat-toolbar>
+        <mat-toolbar>
+            <div class="container">
                 <span class="d-none d-md-inline">
-                    <button mat-button class="nav-button" *ngFor="let item of navItems" [routerLink]="item.link" routerLinkActive="active">
-                        {{ item.title }}
+                    <button mat-button class="nav-button" (click)="openNetworksModal()">
+                        {{ currentNetwork.networkName }}
+                        <fa-icon [icon]="'chevron-down'"></fa-icon>
                     </button>
+                    <button mat-button class="nav-button" (click)="openAccountsModal()">
+                        {{ currentAccount.accountName }}
+                        <fa-icon [icon]="'chevron-down'"></fa-icon>
+                    </button>
+                    <button mat-icon-button class="menu-button" [matMenuTriggerFor]="menu">
+                        <fa-icon [icon]="'ellipsis-v'"></fa-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <ng-container *ngFor="let item of menuItems">
+                            <button mat-menu-item (click)="onMenuItemClick(item.id)">{{ item.name }}</button>
+                        </ng-container>
+                    </mat-menu>
                 </span>
                 <div style="float: right"></div>
             </div>

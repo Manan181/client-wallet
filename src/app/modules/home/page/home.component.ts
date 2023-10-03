@@ -5,7 +5,6 @@ import { Transaction } from 'src/app/models/transaction';
 import { EthersService } from 'src/app/shared/service/ethers/ethers.service';
 import { StorageService } from 'src/app/shared/service/storage/storage.service';
 import { CryptoService } from 'src/app/shared/service/crypto/crypto.service';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-home',
@@ -18,7 +17,6 @@ export class HomeComponent implements OnInit {
     accountBalance: number = 0;
     account: string;
     selectedTabIndex: number = 0;
-    faPaperPlane = faPaperPlane;
 
     constructor(
         private transactionService: TransactionService,

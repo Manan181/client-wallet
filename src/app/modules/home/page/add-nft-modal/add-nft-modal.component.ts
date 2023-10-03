@@ -6,37 +6,32 @@ import { DataService } from 'src/app/data/service/data.service';
 import { StorageService } from 'src/app/shared/service/storage/storage.service';
 
 @Component({
-    selector: 'app-add-token-modal',
-    templateUrl: './add-token-modal.component.html',
-    styleUrls: ['./add-token-modal.component.css']
+    selector: 'app-add-nft-modal',
+    templateUrl: './add-nft-modal.component.html',
+    styleUrls: ['./add-nft-modal.component.css']
 })
-export class AddTokenModalComponent {
-    public addTokenForm: FormGroup;
+export class AddNftModalComponent {
+    public addNftForm: FormGroup;
 
     constructor(public dialog: MatDialog, private formBuilder: FormBuilder, private storageService: StorageService, private dataService: DataService) {
-        this.addTokenForm = this.formBuilder.group({
-            tokenAddress: ['', Validators.required],
-            tokenSymbol: ['', Validators.required],
-            decimalPlaces: [0, Validators.required]
+        this.addNftForm = this.formBuilder.group({
+            address: ['', Validators.required],
+            tokenID: ['', Validators.required]
         });
     }
 
     async onSubmit() {
         try {
-            if (this.addTokenForm.valid) {
+            if (this.addNftForm.valid) {
                 const params = {
-                    tokenAddress: this.addTokenForm.controls['tokenAddress'].value,
-                    tokenSymbol: this.addTokenForm.controls['tokenSymbol'].value,
-                    decimalPlaces: this.addTokenForm.controls['decimalPlaces'].value,
-                    balance: 0
+                    address: this.addNftForm.controls['address'].value,
+                    tokenID: this.addNftForm.controls['tokenID'].value
                 };
                 const selectedAccount = await firstValueFrom(this.dataService.selectedAccount$);
                 this.storageService.addObject('tokens', {
-                    symbol: params.tokenSymbol,
+                    address: params.address,
                     accountAddress: selectedAccount || '',
-                    contractAddress: params.tokenAddress,
-                    decimalPlaces: params.decimalPlaces,
-                    balance: params.balance
+                    tokenID: params.tokenID
                 });
                 this.closeDialog();
             } else {

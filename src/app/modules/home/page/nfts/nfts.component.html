@@ -1,26 +1,26 @@
 <mat-list>
-    <mat-list-item *ngFor="let token of tokens">
-        <div class="token-details">
+    <mat-list-item *ngFor="let nft of nfts">
+        <div class="nft-details">
             <img
                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Ethereum_logo.svg/1285px-Ethereum_logo.svg.png"
-                *ngIf="token.symbol === 'ETH'; else image"
+                *ngIf="nft.symbol === 'ETH'; else image"
             />
             <ng-template #image>
                 <img src="../../../../../assets/blank.jpg" />
             </ng-template>
             <div>
-                <p>{{ token.symbol || 'Ethereum' }}</p>
-                <p>{{ token.amount || 0 + ' ' + token.symbol || 'ETH' }}</p>
+                <p>{{ nft.symbol || 'Ethereum' }}</p>
+                <p>{{ nft.amount || 0 + ' ' + nft.symbol || 'ETH' }}</p>
             </div>
         </div>
     </mat-list-item>
 </mat-list>
 <div class="action-button">
-    <button class="link" (click)="importTokenModal()">
+    <button class="link" (click)="importNftModal()">
         <fa-icon [icon]="'plus'"></fa-icon>
-        <span>Import Tokens</span>
+        <span>Import NFT</span>
     </button>
-    <button class="link" (click)="initTokens()">
+    <button class="link" (click)="initNfts()">
         <fa-icon [icon]="'refresh'"></fa-icon>
         <span>Refresh List</span>
     </button>

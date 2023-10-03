@@ -41,7 +41,7 @@ export class ImportWalletComponent {
                 let params: AccountBalanceParams = {
                     module: 'account',
                     action: 'balance',
-                    address: result.account.address,
+                    address: result.account.address || '0x',
                     tag: 'latest'
                 };
                 let accountBalance = 0;
@@ -53,7 +53,13 @@ export class ImportWalletComponent {
                 const encryptedAccount = this.cryptoService.encrypt(result.account);
                 this.storageService.addObject('accounts', { account: encryptedAccount });
                 this.storageService.addObject('wallet', { wallet: encryptedData });
-                this.storageService.addObject('tokens', { symbol: 'ETH', contractAddress: '', decimalPlaces: 18, balance: accountBalance });
+                this.storageService.addObject('tokens', {
+                    symbol: 'ETH',
+                    accountAddress: params.address,
+                    contractAddress: '',
+                    decimalPlaces: 18,
+                    balance: accountBalance
+                });
                 this.valid = true;
                 this.dataService.updateFromModule('import');
                 this.router.navigate(['/auth/create-wallet-password']);

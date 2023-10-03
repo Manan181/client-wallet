@@ -14,7 +14,7 @@ export class CryptoService {
         return encryptedData.toString();
     }
 
-    decrypt(encryptedData: string): string {
+    decrypt(encryptedData: string) {
         const decryptedBytes = CryptoJS.AES.decrypt(encryptedData, environment.passwordSecret);
         const decryptedString = decryptedBytes.toString(CryptoJS.enc.Utf8);
         return JSON.parse(decryptedString);
