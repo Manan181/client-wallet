@@ -5,7 +5,7 @@ import { Transaction } from 'src/app/models/transaction';
 import { EthersService } from 'src/app/shared/service/ethers.service';
 import { StorageService } from 'src/app/shared/service/storage.service';
 import { CryptoService } from 'src/app/shared/service/crypto.service';
-import { WalletConnectService } from 'src/app/shared/service/wallet-connect.service';
+// import { WalletConnectService } from 'src/app/shared/service/wallet-connect.service';
 import { ToastService } from 'src/app/shared/service/toast.service';
 import { MatDialog } from '@angular/material/dialog';
 import { WalletConnectComponent } from 'src/app/shared/component/wallet-connect/wallet-connect.component';
@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
         private ethersService: EthersService,
         private storageService: StorageService,
         private cryptoService: CryptoService,
-        private walletConnectService: WalletConnectService,
+        // private walletConnectService: WalletConnectService,
         private toastService: ToastService,
         public dialog: MatDialog
     ) {}
