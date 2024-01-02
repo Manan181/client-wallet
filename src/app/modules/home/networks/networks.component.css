@@ -1,0 +1,39 @@
+/* Style for the form */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style for labels */
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Style for inputs */
+input {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+/* Style for submit button */
+button[type='submit'] {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type='submit']:hover {
+    background-color: #0056b3;
+}
+
+button[type='submit']:disabled {
+    background-color: #77b7fc;
+    cursor: not-allowed;
+}

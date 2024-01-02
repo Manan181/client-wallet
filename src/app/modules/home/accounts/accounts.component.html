@@ -1,0 +1,30 @@
+<div class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" #closebutton class="close" data-dismiss="modal" (click)="closeDialog()">&times;</button>
+            <h4 class="modal-title">Select an account</h4>
+        </div>
+        <div class="modal-body">
+            <mat-list>
+                <mat-list-item *ngFor="let account of accounts">
+                    <span>{{ account.name }}</span>
+                    <span>{{ account.address }}</span>
+                    <span>{{ account.balance }}</span>
+                    <button>
+                        <fa-icon [icon]="'ellipsis-v'"></fa-icon>
+                    </button>
+                </mat-list-item>
+            </mat-list>
+        </div>
+        <div class="action-button">
+            <button class="link" (click)="addAccount()">
+                <fa-icon [icon]="'plus'"></fa-icon>
+                <span>Add Account</span>
+            </button>
+            <button class="link" (click)="importAccount()">
+                <fa-icon [icon]="'download'"></fa-icon>
+                <span>Import Account</span>
+            </button>
+        </div>
+    </div>
+</div>

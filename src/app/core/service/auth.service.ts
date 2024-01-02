@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { of, Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
-import { EthersService } from 'src/app/shared/service/ethers/ethers.service';
-import { StorageService } from 'src/app/shared/service/storage/storage.service';
+import { EthersService } from 'src/app/shared/service/ethers.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
 
 // Define the interface for login context information.
 interface LoginContextInterface {
@@ -28,23 +29,24 @@ export class AuthService {
      * @returns An Observable<User> representing the logged-in user or an error if login fails.
      */
     login(loginContext: LoginContextInterface): Observable<User> {
-        let storedHashedPassword: string;
+        return new Observable<User>(observer => {
+            this.storageService.getAllObjects('auth', (objects: any[]) => {
+                if (objects && objects.length > 0) {
+                    const storedHashedPassword = objects[0].token;
+                    // Validate the provided password against the stored hashed password.
+                    const isDefaultUser = this.ethersService.validatePassword(loginContext.password, storedHashedPassword);
 
-        // Retrieve stored authentication data from the storage service.
-        this.storageService.getAllObjects('auth', objects => {
-            storedHashedPassword = objects[0].token;
-        });
-
-        // Validate the provided password against the stored hashed password.
-        const isDefaultUser = this.ethersService.validatePassword(loginContext.password, storedHashedPassword);
-
-        // If the password is valid, return the default user.
-        if (isDefaultUser) {
-            return of(defaultUser);
-        }
-
-        // If the password is invalid, throw an error.
-        return throwError('Invalid password');
+                    if (isDefaultUser) {
+                        observer.next(defaultUser);
+                        observer.complete();
+                    } else {
+                        observer.error('Invalid password');
+                    }
+                } else {
+                    observer.error('No authentication data found');
+                }
+            });
+        }).pipe(catchError(error => throwError(error)));
     }
 
     /**

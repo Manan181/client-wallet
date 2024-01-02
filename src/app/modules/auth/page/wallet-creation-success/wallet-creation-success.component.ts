@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { StorageService } from 'src/app/shared/service/storage/storage.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
 
 @Component({
     selector: 'app-wallet-creation-success',
@@ -12,6 +12,6 @@ export class WalletCreationSuccessComponent {
 
     goToHome() {
         this.router.navigate(['/home']);
-        this.storageService.addObject('wallet', {});
+        this.storageService.addObject('walletCreated', { isWalletCreated: true, id: 1 });
     }
 }

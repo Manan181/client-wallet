@@ -1,16 +1,19 @@
 <h1>Access your wallet with your Secret Recovery Phrase</h1>
 <h3>
-    Web-Wallet cannot recover your password. We will use your Secret Recovery Phrase to validate your ownership, restore your wallet and set up a new password. First, enter the
-    Secret Recovery Phrase that you were given when you created your wallet.
+    Web-Wallet cannot recover your password. We will use your Secret Recovery Phrase to validate your ownership, restore your wallet and set up a new password.
+    First, enter the Secret Recovery Phrase that you were given when you created your wallet.
 </h3>
 <div>
     <p>Type your Secret Recovery Phrase</p>
-    <!-- <app-recovery-phrase [page]="'import'" (confirmSecretRecoveryPhrase)="confirmSecretRecoveryPhrase($event)"></app-recovery-phrase> -->
     <div class="password-input-container">
         <div *ngFor="let row of rows; let rowIndex = index" class="password-row">
             <div *ngFor="let col of cols; let colIndex = index" class="password-col">
                 <span>{{ rowIndex * cols.length + colIndex + 1 + '.' }}</span>
-                <input type="{{ getPasswordFieldType(rowIndex, colIndex) }}" [(ngModel)]="phraseArray[rowIndex * cols.length + colIndex]" />
+                <input
+                    type="{{ getPasswordFieldType(rowIndex, colIndex) }}"
+                    [(ngModel)]="phraseArray[rowIndex * cols.length + colIndex]"
+                    (input)="handleMnemonicPhraseInput($event)"
+                />
                 <fa-icon
                     [icon]="isPasswordVisible(rowIndex, colIndex) ? 'eye' : 'eye-slash'"
                     (click)="togglePasswordVisibility(rowIndex, colIndex)"
@@ -18,6 +21,7 @@
                 ></fa-icon>
             </div>
         </div>
-        <button (click)="confirmSecretRecoveryPhrase()">Confirm Secret Recovery Phrase</button>
+        <div *ngIf="!valid" class="error-message"><p>Invalid Mnemonic Phrase</p></div>
+        <button class="btn-primary" (click)="confirmSecretRecoveryPhrase()">Confirm Secret Recovery Phrase</button>
     </div>
 </div>

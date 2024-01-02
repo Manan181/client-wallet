@@ -1,7 +1,8 @@
 export interface Account {
+    accountName: string;
     privateKey: string;
     address: string;
-    balance: string;
+    balance: number;
 }
 
 export interface GenerateKeysState {

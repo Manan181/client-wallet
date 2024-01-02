@@ -1,4 +1,4 @@
-<div>
+<div class="recovery-phase">
     <h1>Write down your Secret Recovery Phrase</h1>
     <p>Write down this 12-word Secret Recovery Phrase and save it in a place that you trust and only you can access.</p>
     <h4>Tips</h4>
@@ -14,9 +14,11 @@
                 <input [type]="isVisible ? 'text' : 'password'" [(ngModel)]="phraseArray[rowIndex * cols.length + colIndex]" />
             </div>
         </div>
-        <button class="left" *ngIf="isVisible" (click)="isVisible = !isVisible">Hide seed phrase</button>
-        <button class="left" *ngIf="!isVisible" (click)="isVisible = !isVisible">Show seed phrase</button>
-        <button id="copyButton" (click)="copyToClipboard()">Copy to clipboard</button>
-        <button (click)="getRecoveryPhrase()">Next</button>
+        <div class="action-button">
+            <button class="left" *ngIf="isVisible" (click)="isVisible = !isVisible">Hide seed phrase</button>
+            <button class="left" *ngIf="!isVisible" (click)="isVisible = !isVisible">Show seed phrase</button>
+            <button id="copyButton" (click)="copyToClipboard()">Copy to clipboard</button>
+        </div>
+        <button class="btn-primary" (click)="getRecoveryPhrase()">Next</button>
     </div>
 </div>

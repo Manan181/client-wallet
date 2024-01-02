@@ -4,6 +4,35 @@
   margin-right: 1rem;
 }
 
-#content {
-  margin-top: 1rem;
+.round {
+  border-radius: 100%;
+}
+#content{
+  text-align: center;
+  margin: 0 auto;
+  max-width: 800px;
+  border: 1px solid #ddd;
+  padding: 20px 0;  
+  min-height: calc(100vh - 170px);
+  max-height: calc(100vh - 170px);
+  overflow: auto;
+}
+
+.account-details{
+  padding: 0 20px;
+  margin-bottom: 30px;
+}
+.account-details div {
+  margin-bottom: 15px;
+}
+.action-button {
+  display: flex;
+  justify-content: center;
+}
+.action-button .icon{
+  display: flex;
+  margin: 0 14px;
+}
+.action-button .icon label{
+  margin-left: 6px;
 }

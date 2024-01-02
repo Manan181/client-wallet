@@ -1,0 +1,23 @@
+.nft-details{
+    display: flex;
+}
+.nft-details img{
+    border-radius: 50%;
+    margin-right: 14px;
+    max-width: 34px;
+    max-height: 34px;
+}
+.nft-details p{
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: left;
+    font-weight: 500;
+}
+.nft-details p:last-child{
+    font-weight: 400;
+}
+mat-list-item{
+    margin-bottom: 20px;
+}

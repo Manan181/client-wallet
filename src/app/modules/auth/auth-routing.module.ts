@@ -9,6 +9,7 @@ import { CreateWalletPasswordComponent } from './page/create-wallet-password/cre
 import { ConfirmWalletRecoveryPhraseComponent } from './page/confirm-wallet-recovery-phrase/confirm-wallet-recovery-phrase.component';
 import { WalletCreationSuccessComponent } from './page/wallet-creation-success/wallet-creation-success.component';
 import { PasswordCreatedGuard } from 'src/app/core/guard/password-created.guard';
+import { ResetWalletComponent } from './page/reset-wallet/reset-wallet.component';
 
 const routes: Routes = [
     {
@@ -26,8 +27,7 @@ const routes: Routes = [
             },
             {
                 path: 'register',
-                component: RegisterComponent,
-                canActivate: [PasswordCreatedGuard]
+                component: RegisterComponent
             },
             {
                 path: 'create-wallet-recovery-phrase',
@@ -35,8 +35,7 @@ const routes: Routes = [
             },
             {
                 path: 'create-wallet-password',
-                component: CreateWalletPasswordComponent,
-                canActivate: [PasswordCreatedGuard]
+                component: CreateWalletPasswordComponent
             },
             {
                 path: 'confirm-wallet-recovery-phrase',
@@ -49,6 +48,10 @@ const routes: Routes = [
             {
                 path: 'wallet-creation-success',
                 component: WalletCreationSuccessComponent
+            },
+            {
+                path: 'reset-wallet',
+                component: ResetWalletComponent
             }
         ]
     }

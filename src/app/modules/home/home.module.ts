@@ -8,9 +8,30 @@ import { TransactionItemComponent } from './page/transaction-item/transaction-it
 import { TransactionDetailsComponent } from './page/transaction-details/transaction-details.component';
 import { DateFormatPipe } from 'src/app/pipe/date-format/date-format.pipe';
 import { MaterialModule } from 'src/app/shared/material.module';
+import { TokensComponent } from './page/tokens/tokens.component';
+import { AddTokenModalComponent } from './page/add-token-modal/add-token-modal.component';
+import { AccountsComponent } from './accounts/accounts.component';
+import { NetworksComponent } from './networks/networks.component';
+import { AddAccountComponent } from './accounts/add-account/add-account.component';
+import { NftsComponent } from './page/nfts/nfts.component';
+import { AddNftModalComponent } from './page/add-nft-modal/add-nft-modal.component';
+import { WalletConnectComponent } from '../../shared/component/wallet-connect/wallet-connect.component';
 
 @NgModule({
-    declarations: [HomeComponent, TransactionItemComponent, TransactionDetailsComponent, DateFormatPipe],
+    declarations: [
+        HomeComponent,
+        TransactionItemComponent,
+        TransactionDetailsComponent,
+        DateFormatPipe,
+        TokensComponent,
+        AddTokenModalComponent,
+        AccountsComponent,
+        NetworksComponent,
+        AddAccountComponent,
+        NftsComponent,
+        AddNftModalComponent,
+        WalletConnectComponent
+    ],
     imports: [SharedModule, CommonModule, HomeRoutingModule, NgxMasonryModule, MaterialModule],
     exports: [DateFormatPipe]
 })

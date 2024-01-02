@@ -1,0 +1,27 @@
+<mat-list>
+    <mat-list-item *ngFor="let token of tokens">
+        <div class="token-details">
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Ethereum_logo.svg/1285px-Ethereum_logo.svg.png"
+                *ngIf="token.symbol === 'ETH'; else image"
+            />
+            <ng-template #image>
+                <img src="../../../../../assets/blank.jpg" />
+            </ng-template>
+            <div>
+                <p>{{ token.symbol || 'Ethereum' }}</p>
+                <p>{{ token.amount || 0 + ' ' + token.symbol || 'ETH' }}</p>
+            </div>
+        </div>
+    </mat-list-item>
+</mat-list>
+<div class="action-button">
+    <button class="link" (click)="importTokenModal()">
+        <fa-icon [icon]="'plus'"></fa-icon>
+        <span>Import Tokens</span>
+    </button>
+    <button class="link" (click)="initTokens()">
+        <fa-icon [icon]="'refresh'"></fa-icon>
+        <span>Refresh List</span>
+    </button>
+</div>

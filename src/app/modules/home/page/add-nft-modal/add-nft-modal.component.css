@@ -1,0 +1,38 @@
+/* Style for the form */
+form {
+    display: flex;
+    flex-direction: column;
+}
+.form-group{
+    margin-bottom: 10px;
+}
+/* Style for labels */
+label {
+    margin-bottom: 5px;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+/* Style for inputs */
+input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+}
+
+/* Style for submit button */
+
+
+.btn-primary{
+    padding: 10px 5px;
+    margin-top: 30px;    
+}
+button[type='submit']:disabled {
+    cursor: not-allowed;
+    opacity: .7;
+}
+.error-message{
+    font-size: 14px;
+    margin-top: 4px;
+}

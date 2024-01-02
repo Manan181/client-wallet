@@ -1,0 +1,24 @@
+.wallet-sucess p{
+    font-weight: 400;
+    font-size: 18px;
+    margin-bottom: 40px;    
+}
+.wallet-sucess h3{
+    font-size: 18px;
+    text-align: left;
+    margin: 0 auto;
+    padding-bottom: 4px;  
+    padding-left: 34px;  
+}
+.wallet-sucess ul{
+    padding: 0 0 0 34px;
+    text-align: left;
+    margin: 0 auto;    
+}
+.wallet-sucess ul li{
+    margin-top: 4px;
+    margin-left: 22px;
+}
+.wallet-sucess .btn-primary{
+    margin-top: 40px;
+}

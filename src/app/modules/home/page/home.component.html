@@ -1,9 +1,35 @@
 <div id="content">
-    <div>Account: {{ account }}</div>
-    <div>Balance: {{ accountBalance }} ETH</div>
+    <div class="account-details">
+        <div>Account: {{ account }}</div>
+        <div>Balance: {{ accountBalance }} ETH</div>
+        <div class="action-button">
+            <div class="icon">
+                <button class="round">
+                    <fa-icon [icon]="'plus'"></fa-icon>
+                </button>
+                <label>Buy</label>
+            </div>
+            <div class="icon">
+                <button class="round">
+                    <fa-icon [icon]="'paper-plane'"></fa-icon>
+                </button>
+                <label>Send</label>
+            </div>
+            <div class="icon">
+                <button class="round" (click)="openConnectWalletModal()">
+                    <fa-icon [icon]="'paper-plane'"></fa-icon>
+                </button>
+                <label>Connect</label>
+            </div>
+        </div>
+    </div>
     <mat-tab-group [selectedIndex]="selectedTabIndex" (selectedIndexChange)="onTabChange($event)">
-        <mat-tab label="Tokens"></mat-tab>
-        <mat-tab label="NFTs"></mat-tab>
+        <mat-tab label="Tokens">
+            <app-tokens [accountBal]="accountBalance" [accountAddress]="account"></app-tokens>
+        </mat-tab>
+        <mat-tab label="NFTs">
+            <app-nfts [accountBal]="accountBalance" [accountAddress]="account"></app-nfts>
+        </mat-tab>
         <mat-tab label="Activity">
             <div>
                 <h1>Transaction History</h1>

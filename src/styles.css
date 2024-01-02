@@ -24,16 +24,166 @@ body {
 
 h1,
 h3,
-p {
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-h1,
-h3,
 p,
 form {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.password-toggle-icon.fa-eye-slash {
+  color: red;
+}
+
+.password-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.password-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.password-col {
+  display: flex;
+  align-items: center;
+}
+
+input {
+  width: 100px;
+}
+
+.password-toggle-icon {
+  cursor: pointer;
+  margin-left: 5px;
+}
+.btn-primary {
+  width: 100%;
+  background-color: #3f51b5;
+  padding: 16px 5px;
+  border-radius: 30px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid #3f51b5;
+}
+button{
+  cursor: pointer;
+}
+.password-input-container{
+  margin-top: 40px;
+}
+.password-input-container .password-row {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.password-input-container .password-row .password-col {
+  width: 33%;
+}
+.password-input-container .password-row .password-col span {
+  min-width: 28px;
+}
+.password-input-container .password-row .password-col input {
+  width: 70%;
+  border: 1px solid #c7c7c7;
+  border-radius: 10px;
+  min-height: 36px;
+  padding: 5px 10px;
+}
+app-nav .wrapper{
+  margin: 0 auto;
+  max-width: 800px;
+}
+.mat-mdc-tab-body-wrapper{
+  margin-top: 30px;
+  padding: 0 10px;
+}
+.mat-mdc-tab-list{
+  border-bottom: 1px solid #ddd;
+}
+.mat-mdc-tab:hover .mdc-tab__ripple::before{
+  opacity: 0 !important;
+}
+.mdc-tab-indicator .mdc-tab-indicator__content--underline{
+  border-top-width: 3px !important;
+}
+.mat-mdc-tab .mdc-tab__text-label{
+  font-size: 16px;
+}
+
+/* Style for modals */
+.modal {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: 0.2;
+    transform: scale(1.2);
+}
+.modal-header .close {
+    margin-top: 6px;
+}
+button.close {
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.modal-header .modal-title {
+    margin-top: 0;
+    font-size: 22px;
+}
+
+/* Style for the modal content */
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+    width: 400px;
+}
+
+/* Style for buttons */
+.link {
+    border: none;
+    background: none;
+    color: #3f51b5;
+    font-weight: 500;
+}
+.link:hover {
+    text-decoration: underline;
+}
+.action-button{
+    margin-top: 10px;
+}
+.action-button button{
+    display: block;
+    font-size: 15px;
+    text-align: left;
+    margin-top: 10px;
+    transition: all 0.3s ease-in;
+}
+.action-button button fa-icon{
+    margin: 1px;
 }

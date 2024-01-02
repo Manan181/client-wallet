@@ -1,0 +1,27 @@
+<mat-list>
+    <mat-list-item *ngFor="let nft of nfts">
+        <div class="nft-details">
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Ethereum_logo.svg/1285px-Ethereum_logo.svg.png"
+                *ngIf="nft.symbol === 'ETH'; else image"
+            />
+            <ng-template #image>
+                <img src="../../../../../assets/blank.jpg" />
+            </ng-template>
+            <div>
+                <p>{{ nft.symbol || 'Ethereum' }}</p>
+                <p>{{ nft.amount || 0 + ' ' + nft.symbol || 'ETH' }}</p>
+            </div>
+        </div>
+    </mat-list-item>
+</mat-list>
+<div class="action-button">
+    <button class="link" (click)="importNftModal()">
+        <fa-icon [icon]="'plus'"></fa-icon>
+        <span>Import NFT</span>
+    </button>
+    <button class="link" (click)="initNfts()">
+        <fa-icon [icon]="'refresh'"></fa-icon>
+        <span>Refresh List</span>
+    </button>
+</div>
