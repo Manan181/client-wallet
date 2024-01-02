@@ -4,9 +4,9 @@ import { firstValueFrom } from 'rxjs';
 import { DataService } from 'src/app/data/service/data.service';
 import { TransactionService } from 'src/app/data/service/transaction.service';
 import { AccountBalanceParams } from 'src/app/models/transaction';
-import { CryptoService } from 'src/app/shared/service/crypto/crypto.service';
-import { EthersService } from 'src/app/shared/service/ethers/ethers.service';
-import { StorageService } from 'src/app/shared/service/storage/storage.service';
+import { CryptoService } from 'src/app/shared/service/crypto.service';
+import { EthersService } from 'src/app/shared/service/ethers.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
 
 @Component({
     selector: 'app-import-wallet',

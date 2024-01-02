@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
 import { DataService } from 'src/app/data/service/data.service';
-import { StorageService } from 'src/app/shared/service/storage/storage.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
 
 @Component({
     selector: 'app-add-token-modal',

@@ -2,9 +2,13 @@ import { Component, OnInit } from '@angular/core';
 
 import { TransactionService } from 'src/app/data/service/transaction.service';
 import { Transaction } from 'src/app/models/transaction';
-import { EthersService } from 'src/app/shared/service/ethers/ethers.service';
-import { StorageService } from 'src/app/shared/service/storage/storage.service';
-import { CryptoService } from 'src/app/shared/service/crypto/crypto.service';
+import { EthersService } from 'src/app/shared/service/ethers.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
+import { CryptoService } from 'src/app/shared/service/crypto.service';
+import { WalletConnectService } from 'src/app/shared/service/wallet-connect.service';
+import { ToastService } from 'src/app/shared/service/toast.service';
+import { MatDialog } from '@angular/material/dialog';
+import { WalletConnectComponent } from 'src/app/shared/component/wallet-connect/wallet-connect.component';
 
 @Component({
     selector: 'app-home',
@@ -22,7 +26,10 @@ export class HomeComponent implements OnInit {
         private transactionService: TransactionService,
         private ethersService: EthersService,
         private storageService: StorageService,
-        private cryptoService: CryptoService
+        private cryptoService: CryptoService,
+        private walletConnectService: WalletConnectService,
+        private toastService: ToastService,
+        public dialog: MatDialog
     ) {}
 
     async ngOnInit() {
@@ -83,5 +90,16 @@ export class HomeComponent implements OnInit {
         } catch (error) {
             console.error(error);
         }
+    }
+
+    openConnectWalletModal(): void {
+        const dialogRef = this.dialog.open(WalletConnectComponent, {
+            width: '250px',
+            hasBackdrop: true,
+            disableClose: false,
+            data: {}
+        });
+
+        dialogRef.afterClosed().subscribe(() => {});
     }
 }

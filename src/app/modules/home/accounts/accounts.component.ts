@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { StorageService } from 'src/app/shared/service/storage/storage.service';
-import { CryptoService } from 'src/app/shared/service/crypto/crypto.service';
-import { EthersService } from 'src/app/shared/service/ethers/ethers.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
+import { CryptoService } from 'src/app/shared/service/crypto.service';
+import { EthersService } from 'src/app/shared/service/ethers.service';
 import { TransactionService } from 'src/app/data/service/transaction.service';
 import { firstValueFrom } from 'rxjs';
 

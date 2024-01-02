@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
 import { TransactionService } from 'src/app/data/service/transaction.service';
 import { TokenBalanceParams } from 'src/app/models/transaction';
-import { StorageService } from 'src/app/shared/service/storage/storage.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
 import { AddNftModalComponent } from '../add-nft-modal/add-nft-modal.component';
 
 @Component({

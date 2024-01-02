@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { EthersService } from '../../../../shared/service/ethers/ethers.service';
-import { StorageService } from 'src/app/shared/service/storage/storage.service';
-import { CryptoService } from 'src/app/shared/service/crypto/crypto.service';
+import { EthersService } from '../../../../shared/service/ethers.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
+import { CryptoService } from 'src/app/shared/service/crypto.service';
 
 @Component({
     selector: 'app-create-wallet-recovery-phrase',

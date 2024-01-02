@@ -15,6 +15,12 @@
                 </button>
                 <label>Send</label>
             </div>
+            <div class="icon">
+                <button class="round" (click)="openConnectWalletModal()">
+                    <fa-icon [icon]="'paper-plane'"></fa-icon>
+                </button>
+                <label>Connect</label>
+            </div>
         </div>
     </div>
     <mat-tab-group [selectedIndex]="selectedTabIndex" (selectedIndexChange)="onTabChange($event)">

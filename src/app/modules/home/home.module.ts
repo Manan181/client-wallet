@@ -15,6 +15,7 @@ import { NetworksComponent } from './networks/networks.component';
 import { AddAccountComponent } from './accounts/add-account/add-account.component';
 import { NftsComponent } from './page/nfts/nfts.component';
 import { AddNftModalComponent } from './page/add-nft-modal/add-nft-modal.component';
+import { WalletConnectComponent } from '../../shared/component/wallet-connect/wallet-connect.component';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import { AddNftModalComponent } from './page/add-nft-modal/add-nft-modal.compone
         NetworksComponent,
         AddAccountComponent,
         NftsComponent,
-        AddNftModalComponent
+        AddNftModalComponent,
+        WalletConnectComponent
     ],
     imports: [SharedModule, CommonModule, HomeRoutingModule, NgxMasonryModule, MaterialModule],
     exports: [DateFormatPipe]

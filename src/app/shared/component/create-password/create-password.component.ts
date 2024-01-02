@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, UntypedFormControl, Validators, ValidationErrors } from '@angular/forms';
-import { EthersService } from '../../service/ethers/ethers.service';
-import { StorageService } from '../../service/storage/storage.service';
+import { EthersService } from '../../service/ethers.service';
+import { StorageService } from '../../service/storage.service';
 
 @Component({
     selector: 'app-create-password',

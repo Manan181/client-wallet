@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/data/service/data.service';
 import { GenerateKeysState } from 'src/app/models/ether.state';
-import { CryptoService } from 'src/app/shared/service/crypto/crypto.service';
-import { EthersService } from 'src/app/shared/service/ethers/ethers.service';
-import { StorageService } from 'src/app/shared/service/storage/storage.service';
+import { CryptoService } from 'src/app/shared/service/crypto.service';
+import { EthersService } from 'src/app/shared/service/ethers.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
 
 @Component({
     selector: 'app-create-wallet-password',

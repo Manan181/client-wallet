@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { StorageService } from 'src/app/shared/service/storage/storage.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
 import { AddTokenModalComponent } from '../add-token-modal/add-token-modal.component';
 import { TransactionService } from 'src/app/data/service/transaction.service';
 import { TokenBalanceParams } from '../../../../models/transaction';

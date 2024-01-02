@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { of, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
-import { EthersService } from 'src/app/shared/service/ethers/ethers.service';
-import { StorageService } from 'src/app/shared/service/storage/storage.service';
+import { EthersService } from 'src/app/shared/service/ethers.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
 
 // Define the interface for login context information.
 interface LoginContextInterface {

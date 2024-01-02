@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Account } from 'src/app/models/ether.state';
-import { StorageService } from 'src/app/shared/service/storage/storage.service';
+import { StorageService } from 'src/app/shared/service/storage.service';
 
 @Injectable()
 export class AuthGuard {
