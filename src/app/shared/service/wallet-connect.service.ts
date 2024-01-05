@@ -48,6 +48,34 @@ export class WalletConnectService implements OnInit, OnDestroy {
         console.log('🚀 ~ file: wallet-connect.service.ts:51 ~ WalletConnectService ~ initialize ~ sessions:', sessions);
         console.log('🚀 ~ file: wallet-connect.service.ts:52 ~ WalletConnectService ~ initialize ~ sessionsArray:', sessionsArray);
         this.web3wallet.on('session_proposal', this.onSessionProposal);
+        this.web3wallet.on('session_request', async event => {
+            const { topic, params, id } = event;
+            const { request } = params;
+
+            console.log('EVENT', 'session_request', event);
+
+            if (request.method === 'eth_sendTransaction') {
+                console.log('handleSendTransaction called');
+                // await handleSendTransaction(id, request.params, topic);
+            } else {
+                await this.web3wallet.respondSessionRequest({
+                    topic,
+                    response: {
+                        jsonrpc: '2.0',
+                        id: id,
+                        error: {
+                            code: 0,
+                            message: 'Method not supported by Impersonator'
+                        }
+                    }
+                });
+            }
+        });
+
+        this.web3wallet.on('session_delete', () => {
+            console.log('EVENT', 'session_delete');
+            // reset();
+        });
     }
 
     async onSessionProposal(proposal) {
